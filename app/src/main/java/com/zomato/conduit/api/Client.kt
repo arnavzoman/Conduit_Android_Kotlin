@@ -10,12 +10,12 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object Client {
 
-    val okhttp by lazy {
+    val okhttp: OkHttpClient by lazy {
         OkHttpClient.Builder()
             .build()
     }
 
-    val retrofit by lazy {
+    val retrofit: Retrofit by lazy {
 
         Retrofit.Builder()
             .baseUrl("https://conduit.productionready.io/api/")
@@ -23,7 +23,7 @@ object Client {
             .build()
     }
 
-    val conduitAPI by lazy {
+    val conduitAPI: ConduitAPI by lazy {
         retrofit.create(ConduitAPI::class.java)
     }
 

@@ -15,32 +15,32 @@ import retrofit2.http.*
  */
 interface ConduitAPI {
 
-    @POST("api/users/login")
+    @POST("users/login")
     fun loginUser(@Body loginRequest: LoginRequest): Call<UserResponse>
 
-    @POST("api/users")
+    @POST("users")
     fun signupUser(@Body signupRequest: SignupRequest): Call<UserResponse>
 
-    @GET("api/user")
+    @GET("user")
     fun getUser(): Call<UserResponse>
 
-    @PUT("api/user")
+    @PUT("user")
     fun updateUser(@Body user: User): Call<UserResponse>
 
-    @GET("api/user/{username}")
+    @GET("user/{username}")
     fun getProfile(@Path("username") username: String): Call<ProfileResponse>
 
-    @POST("api/profiles/{username}/follow")
+    @POST("profiles/{username}/follow")
     fun followProfile(@Path("username") username: String): Call<ProfileResponse>
 
-    @DELETE("api/profiles/{username}/follow")
+    @DELETE("profiles/{username}/follow")
     fun unfollowProfile(@Path("username") username: String): Call<ProfileResponse>
 
-    @GET("api/articles")
+    @GET("articles")
     fun getArticles(
-        @Query("tag") vararg tag: String?,
-        @Query("author") author: String?,
-        @Query("favourited") user: String?,
+        @Query("tag") vararg tag: String? = arrayOf(),
+        @Query("author") author: String? = null,
+        @Query("favourited") user: String? = null,
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
     ): Call<ArticlesResponse>

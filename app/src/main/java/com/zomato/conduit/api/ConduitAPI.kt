@@ -7,6 +7,7 @@ import com.zomato.conduit.api.responses.ProfileResponse
 import com.zomato.conduit.api.responses.UserResponse
 import com.zomato.conduit.models.User
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 /**
@@ -37,13 +38,13 @@ interface ConduitAPI {
     fun unfollowProfile(@Path("username") username: String): Call<ProfileResponse>
 
     @GET("articles")
-    fun getArticles(
+    suspend fun getArticles(
         @Query("tag") vararg tag: String? = arrayOf(),
         @Query("author") author: String? = null,
         @Query("favourited") user: String? = null,
         @Query("limit") limit: Int = 20,
         @Query("offset") offset: Int = 0
-    ): Call<ArticlesResponse>
+    ): Response<ArticlesResponse>
 
 
 }

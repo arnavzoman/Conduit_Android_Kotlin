@@ -1,5 +1,6 @@
 package com.zomato.conduit.api
 
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 
@@ -10,11 +11,12 @@ import org.junit.Test
 class ConduitApiTests {
 
     @Test
-    fun `GET articles` () {
-        val resp = Client.conduitAPI.getArticles().execute().body()
+    fun `GET articles`() = runBlocking {
+        val resp = Client.conduitAPI.getArticles().body()
         Assert.assertNotNull(resp)
         resp!!.let {
             Assert.assertEquals(20, resp.articles.size)
         }
     }
+
 }

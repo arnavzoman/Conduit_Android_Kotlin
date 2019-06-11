@@ -42,7 +42,7 @@ interface ConduitAPI {
         @Query("tag") vararg tag: String? = arrayOf(),
         @Query("author") author: String? = null,
         @Query("favourited") user: String? = null,
-        @Query("limit") limit: Int = 20,
+        @Query("limit") limit: Int = 200,
         @Query("offset") offset: Int = 0
     ): Response<ArticlesResponse>
 

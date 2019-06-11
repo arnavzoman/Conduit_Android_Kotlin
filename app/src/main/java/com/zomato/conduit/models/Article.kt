@@ -1,6 +1,7 @@
 package com.zomato.conduit.models
 
 import androidx.annotation.Keep
+import androidx.recyclerview.widget.DiffUtil
 
 @Keep
 data class Article(
@@ -14,4 +15,17 @@ data class Article(
     val tagList: List<String>,
     val title: String,
     val updatedAt: String
-)
+){
+    companion object {
+        val diffCallback = object: DiffUtil.ItemCallback<Article>() {
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+                return oldItem.toString() == newItem.toString()
+            }
+
+        }
+    }
+}

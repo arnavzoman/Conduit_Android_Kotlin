@@ -1,11 +1,13 @@
 package com.zomato.conduit.fragments.feed
 
+import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.getSystemService
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.zomato.conduit.R
 import com.zomato.conduit.models.Article
 import kotlinx.android.synthetic.main.list_item_article.view.*
@@ -28,6 +30,12 @@ class FeedAdapter :
         holder.itemView.run {
             getItem(position).let {
                 tvTitle.text = it.title
+                tvDescription.text = it.description
+                tvAuthor.text = it.author.username
+                tvDate.text = DateFormat.format("MMM dd, yyyy", it.createdAt)
+                    Glide.with(holder.itemView)
+                        .load(it.author.image)
+                        .into(ivAvatar)
             }
 
         }

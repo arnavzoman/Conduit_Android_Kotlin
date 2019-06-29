@@ -33,9 +33,9 @@ class FeedAdapter :
                 tvDescription.text = it.description
                 tvAuthor.text = it.author.username
                 tvDate.text = DateFormat.format("MMM dd, yyyy", it.createdAt)
-                    Glide.with(holder.itemView)
-                        .load(it.author.image)
-                        .into(ivAvatar)
+                Glide.with(holder.itemView)
+                    .load(it.author.image)
+                    .into(ivAvatar)
             }
 
         }
